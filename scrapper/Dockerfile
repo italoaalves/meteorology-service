@@ -1,10 +1,10 @@
-FROM python:3.8
+FROM python:3.10
 
-WORKDIR /
+WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY / .
+COPY ./src /app
 
-CMD [ "python", "./app.py" ]
+CMD [ "python", "-u", "./app.py" ]

@@ -1,6 +1,6 @@
 from db.Db import Db
 
-class WheaterForecastDAO:
+class WeatherForecastDAO:
     def __init__(self):
        self.db = Db()
 

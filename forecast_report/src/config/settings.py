@@ -7,7 +7,7 @@ MAILER = {
 # Database setup
 DATABASE = {
     'HOST': 'localhost:3306',
-    'USER': 'invista',
+    'USER': 'root',
     'PASSWORD': 'invista',
     'DB': 'db'
 }
@@ -15,7 +15,7 @@ DATABASE = {
 # Cron jobs setup
 SCHEDULER = {
     'WEEK_INTERVAL': 'mon-fri',
-    'HOUR': 10,
-    'MINUTE': 18,
+    'HOUR': 13,
+    'MINUTE': 35,
     'TIMEZONE': 'America/Fortaleza'
 }
