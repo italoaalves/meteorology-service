@@ -1,20 +1,19 @@
 from os import getenv
-import pymysql.cursors
-import pymysql
+import mysql.connector
+
+# import config.settings
 
 class Db:
     def __init__(self):
-        self.connection = pymysql.connect(host= getenv('HOST'),
-                                            user = getenv('USER'),
-                                            password = getenv('PASSWORD'),
-                                            db = getenv('DB'),
-                                            charset = 'utf8mb4',
-                                            cursorclass = pymysql.cursors.DictCursor)
+        self.connection = mysql.connector.connect(host=getenv('HOST'),
+                                            user=getenv('USER'),
+                                            password=getenv('PASSWORD'),
+                                            database=getenv('DATABASE'),
+                                            autocommit=True
+                                        )
+
         self.cursor = self.connection.cursor()
 
-    def execute(self, query, params):
+    def execute(self, query, params=None):
        self.cursor.execute(query, params)
        return self.cursor
-
-    def __del__(self):
-        self.connection.close()
