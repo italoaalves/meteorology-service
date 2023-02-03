@@ -2,8 +2,6 @@ from os import getenv
 from apscheduler.schedulers.blocking import BlockingScheduler
 from apscheduler.triggers.cron import CronTrigger
 
-import config.settings
-
 scheduler = BlockingScheduler()
 @scheduler.scheduled_job(CronTrigger(day_of_week=getenv('WEEK_INTERVAL'),
                                         hour=getenv('HOUR'),

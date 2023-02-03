@@ -1,5 +1,5 @@
 import smtplib
-from settings import MAILER
+from os import getenv
 
 class Mailer:
     def __init__(self, sender, receiver)
@@ -11,4 +11,4 @@ class Mailer:
 
     def send_email(subject, message)
         body = f'Subject: {subject}\n\n{message}'
-        self.smt_client.sendmail(MAILER['SENDER'], MAILER['RECEIVER'], body)
+        self.smt_client.sendmail(getenv('SENDER'), getenv('RECEIVER'), body)
