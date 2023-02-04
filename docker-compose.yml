@@ -30,8 +30,6 @@ services:
         - db
       volumes:
         - ./scraper/src:/app
-      ports:
-        - 5001:5000
 
   db:
     image: mysql

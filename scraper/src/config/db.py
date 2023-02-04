@@ -12,7 +12,7 @@ class Db:
                                             autocommit=True
                                         )
 
-        self.cursor = self.connection.cursor()
+        self.cursor = self.connection.cursor(buffered=True)
 
     def execute(self, query, params=None):
        self.cursor.execute(query, params)

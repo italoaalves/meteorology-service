@@ -9,7 +9,7 @@ class WeatherReportMailer:
         weather_forecast_tbody = ""
         for weather_forecast in weather_report_list:
             tr = (f'''<tr>
-                        <td>{weather_forecast.day.strftime("%-d de %B")}</td>
+                        <td>{weather_forecast.date.strftime("%-d de %B")}</td>
                         <td>{weather_forecast.min_temp}°</td>
                         <td>{weather_forecast.max_temp}°</td>
                         <td>{float(weather_forecast.precipitation) * 100}%</td>
@@ -50,7 +50,7 @@ class WeatherReportMailer:
                     </body>
                 </html>
         ''')
-        self.mailer.send_email(f'Daily weather report for {str(datetime.now())}', body)
+        self.mailer.send_email(f'Daily weather report for {str(datetime.now().strftime("%-d de %B"))}', body)
 
     def load_view(self):
         with open('./view/weather_report_mailer.html', 'r') as file:

@@ -14,7 +14,4 @@ def application():
     forecast_report_service = ForecastReportService()
     forecast_report_service.send_report()
 
-forecast_report_service = ForecastReportService()
-forecast_report_service.send_report()
-
 scheduler.start()

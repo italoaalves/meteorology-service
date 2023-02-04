@@ -15,6 +15,6 @@ class ForecastReportService:
         self.mailer.send_email(weather_forecast_filtered)
 
     def filter_thresholds(self, weather_forecast):
-        if weather_forecast.min_temp <  int(getenv('MIN_TEMP')) and weather_forecast.max_temp > int(getenv('MAX_TEMP')) and weather_forecast.precipitation > float(getenv('PRECIPITAION')):
+        if weather_forecast.min_temp <=  int(getenv('MIN_TEMP')) and weather_forecast.max_temp >= int(getenv('MAX_TEMP')) and weather_forecast.precipitation >= float(getenv('PRECIPITAION')):
             return True
         return False

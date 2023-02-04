@@ -2,7 +2,7 @@ import requests
 from os import getenv
 from bs4 import BeautifulSoup
 
-from datetime import datetime
+from datetime import date, datetime
 
 from dao.weather_forecast_dao import WeatherForecastDAO
 from model.weather_forecast import WeatherForecast
@@ -35,11 +35,14 @@ class WeatherScraperService:
                 precipitation = float(precipitation_div.find('span', attrs={'data-testid': 'PercentageValue'}).text[:-1])/100
 
                 day_number = int(day.find('h3', attrs={'class': 'DetailsSummary--daypartName--kbngc'}).text.split()[-1])
-                date = datetime.now()
-                date = date.replace(day=day_number)
+                weather_date = datetime.now().date()
+                weather_date = weather_date.replace(day=day_number)
 
-                weather_forecast = WeatherForecast(date, min_temp, max_temp, precipitation)
-                self.weather_forecast_dao.create(weather_forecast)
+                weather_forecast = WeatherForecast(weather_date, weather_date.strftime('%y-%m-%d'), min_temp, max_temp, precipitation)
+
+                if self.weather_forecast_dao.exists_by_date_slug(weather_forecast.date_slug):
+                    self.weather_forecast_dao.update(weather_forecast)
+                else:
+                    self.weather_forecast_dao.create(weather_forecast)
             except ValueError as e:
                 print(e)
-
