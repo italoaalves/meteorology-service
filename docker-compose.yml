@@ -9,7 +9,8 @@ services:
     env_file:
       - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     links:
       - db
     volumes:
@@ -23,7 +24,8 @@ services:
       env_file:
         - .env
       depends_on:
-        - db
+        db:
+          condition: service_healthy
       links:
         - db
       volumes:
@@ -41,6 +43,10 @@ services:
       MYSQL_PASSWORD: invista
       MYSQL_ROOT_HOST: '%'
     command: mysqld --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
     ports:
       - "3306:3306"
     networks:
@@ -48,21 +54,6 @@ services:
     volumes:
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
       - forecast-data:/var/lib/mysql
-
-  rabbitmq:
-    image: rabbitmq:3-management
-    container_name: rabbitmq_management
-    ports:
-      - 25672:25672
-      - 15672:15672
-    volumes:
-      - /docker_conf/rabbitmq/data/:/var/lib/rabbitmq/
-    environment:
-      RABBITMQ_DEFAULT_USER: "admin"
-      RABBITMQ_DEFAULT_PASS: "passw123"
-    networks:
-      - forecast-service-network
-    restart: always
 
 networks:
   forecast-service-network:
