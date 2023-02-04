@@ -15,9 +15,9 @@ services:
     volumes:
       - ./forecast_report/src:/app
 
-  scrapper:
-      build: ./scrapper
-      image: scrapper
+  scraper:
+      build: ./scraper
+      image: scraper
       networks:
         - forecast-service-network
       env_file:
@@ -27,7 +27,7 @@ services:
       links:
         - db
       volumes:
-        - ./scrapper/src:/app
+        - ./scraper/src:/app
       ports:
         - 5001:5000
 
