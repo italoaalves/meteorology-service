@@ -2,4 +2,3 @@ mysql-connector-python
 flask
 apscheduler
 requests
-pika

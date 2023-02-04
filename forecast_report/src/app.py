@@ -11,13 +11,7 @@ scheduler = BlockingScheduler()
                                         timezone=getenv('TIMEZONE')
                                     ))
 def application():
-    # Send message to scrapper
-    # Receive db updated message
     forecast_report_service = ForecastReportService()
     forecast_report_service.send_report()
-    pass
-
-forecast_report_service = ForecastReportService()
-forecast_report_service.send_report()
 
 scheduler.start()

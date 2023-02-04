@@ -2,4 +2,4 @@ beautifulsoup4
 mysql-connector-python
 flask
 requests
-pika
+apscheduler

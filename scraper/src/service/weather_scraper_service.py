@@ -27,16 +27,19 @@ class WeatherScraperService:
         weather_list = page.find('div', attrs={'class': 'DailyForecast--DisclosureList--nosQS'})
         daily_weather = weather_list.find_all('summary', attrs={'class': 'Disclosure--Summary--3GiL4'})
 
-        for day in daily_weather:
+        for day in daily_weather[1:]:
             try:
                 max_temp = int(day.find('span', attrs={'class': 'DetailsSummary--highTempValue--3PjlX'}).text[:-1])
                 min_temp = int(day.find('span', attrs={'class': 'DetailsSummary--lowTempValue--2tesQ'}).text[:-1])
                 precipitation_div = day.find('div', attrs={'class': 'DetailsSummary--precip--1a98O'})
                 precipitation = float(precipitation_div.find('span', attrs={'data-testid': 'PercentageValue'}).text[:-1])/100
 
-                weather_forecast = WeatherForecast(datetime.now(), min_temp, max_temp, precipitation)
+                day_number = int(day.find('h3', attrs={'class': 'DetailsSummary--daypartName--kbngc'}).text.split()[-1])
+                date = datetime.now()
+                date = date.replace(day=day_number)
+
+                weather_forecast = WeatherForecast(date, min_temp, max_temp, precipitation)
                 self.weather_forecast_dao.create(weather_forecast)
             except ValueError as e:
                 print(e)
-                pass
 
