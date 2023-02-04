@@ -7,10 +7,10 @@ Configure seu ambiente .env na raiz do repositório, através da amostra dispon�
 cp .env-sample .env
 ```
 ### Variaveis disponíveis
-
+Modifique os valores de acordo com a sua necessidade.
 #### Filtros
 - `MIN_TEMP` a temperatura mínima
-- `MAX_TEMP` a temperatura máximma
+- `MAX_TEMP` a temperatura máxima
 - `PRECIPITATION` a porcentagem de possibilidade de chuva desejada
 
 #### Agendamento das tarefas
