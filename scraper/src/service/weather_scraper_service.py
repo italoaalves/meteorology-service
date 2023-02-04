@@ -16,7 +16,7 @@ HEADERS = {
     "Accept-Encoding": "gzip, deflate",
 }
 
-class WeatherScrapperService:
+class WeatherScraperService:
     def __init__(self):
         self.weather_forecast_dao = WeatherForecastDAO()
 
