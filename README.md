@@ -32,6 +32,7 @@ Clone este repositório:
 ```bash
 git clone https://github.com/italoaalves/meteorology-service
 ```
+Configure seu `.env` com base na sessão anterior.
 Suba o cluster:
 ```bash
 docker-compose up -d --build
