@@ -1,5 +1,7 @@
 FROM python:3.10
 
+ENV LANG pt_BR.UTF-8
+
 WORKDIR /app
 
 COPY requirements.txt .

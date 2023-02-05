@@ -12,7 +12,7 @@ class WeatherReportMailer:
                         <td>{weather_forecast.date.strftime("%-d de %B")}</td>
                         <td>{weather_forecast.min_temp}°</td>
                         <td>{weather_forecast.max_temp}°</td>
-                        <td>{float(weather_forecast.precipitation) * 100}%</td>
+                        <td>{(float(weather_forecast.precipitation) * 100):.1f}%</td>
                     </tr>
                 ''')
 
@@ -29,7 +29,7 @@ class WeatherReportMailer:
                         </style>
                     </head>
                     <body style="padding-top: 20px; text-align: center; background-color: #e2e0d5; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
-                        <h1 style="font-weight: normal; color: #222c3c;">Seu boletin diário de tempo chegou:</h1>
+                        <h1 style="font-weight: normal; color: #222c3c;">Seu boletim diário de tempo chegou:</h1>
                         <p>Confira a tabela com os dias dentro dos filtros definidos.<p>
                         <div style="padding: 16px">
                             <table align="center" style="background-color: whitesmoke; padding: 16px; border-radius: 5px; width: 100%;">
