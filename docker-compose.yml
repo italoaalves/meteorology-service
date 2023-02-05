@@ -11,8 +11,6 @@ services:
     depends_on:
       db:
         condition: service_healthy
-    links:
-      - db
     volumes:
       - ./forecast_report/src:/app
 
@@ -26,8 +24,6 @@ services:
       depends_on:
         db:
           condition: service_healthy
-      links:
-        - db
       volumes:
         - ./scraper/src:/app
 
@@ -55,6 +51,7 @@ services:
 
 networks:
   forecast-service-network:
+    driver: bridge
 
 volumes:
   forecast-data:
